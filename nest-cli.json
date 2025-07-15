@@ -1,0 +1,26 @@
+{
+    "language": "ts",
+    "collection": "@nestjs/schematics",
+    "sourceRoot": "src",
+    "monorepo": true,
+    "compilerOptions": {
+        "plugins": [
+            {
+                "name": "@nestjs/swagger/plugin",
+                "options": {
+                    "dtoFileNameSuffix": [
+                        ".dto.ts"
+                    ],
+                    "classValidatorShim": false
+                }
+            }
+        ]
+    },
+    "projects": {
+        "restAPI": {
+            "type": "application",
+            "entryFile": "apps/restAPI/main",
+            "sourceRoot": "src/apps/restAPI"
+        }
+    }
+}
