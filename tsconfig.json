@@ -21,7 +21,12 @@
     "declaration": false,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "src/*": ["src/*"]
+      "@core/*": [
+        "src/core/*"
+      ],
+      "@restAPI/*": [
+        "src/apps/restAPI/*"
+      ]
     }
   },
   "include": [

@@ -1,5 +1,4 @@
 import { Server } from "./server";
-
 import { config } from "src/core/configuration/configuration";
 
 const server = new Server();

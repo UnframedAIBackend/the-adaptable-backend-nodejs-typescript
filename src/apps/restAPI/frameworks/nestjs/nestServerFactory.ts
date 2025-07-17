@@ -2,7 +2,8 @@ import { NestFactory } from "@nestjs/core";
 import { INestApplication } from "@nestjs/common";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 
-import { Route } from "./route";
+import { Route } from "@restAPI/frameworks/nestjs/route";
+import { RESTAPI_DESCRIPTION, RESTAPI_DOCS_PATH, RESTAPI_NAME, RESTAPI_VERSION } from "@restAPI/frameworks/constants";
 
 export class NestServerFactory {
   static async create(): Promise<INestApplication> {
@@ -15,12 +16,12 @@ export class NestServerFactory {
   
   private static setupSwagger(app: INestApplication): void {
     const config = new DocumentBuilder()
-      .setTitle("AdaptNotes API")
-      .setDescription("The AdaptNotes API documentation")
-      .setVersion("1.0")
+      .setTitle(RESTAPI_NAME)
+      .setDescription(RESTAPI_DESCRIPTION)
+      .setVersion(RESTAPI_VERSION)
       .build();
 
     const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup("docs", app, document);
+    SwaggerModule.setup(RESTAPI_DOCS_PATH, app, document);
   }
 }
