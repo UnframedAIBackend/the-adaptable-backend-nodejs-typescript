@@ -4,6 +4,8 @@ import * as path from "path";
 interface EnvConfig {
   NODE_ENV: "development" | "production" | "test";
   PORT: number;
+  DATABASE_URL: string;
+  DATABASE_ENGINE: string;
 }
 
 type EnvVarConfig = {
@@ -15,10 +17,12 @@ type EnvVarConfig = {
 export class Configuration {
   private static instance: Configuration;
   private readonly config: Map<keyof EnvConfig, string | number> = new Map();
-  
+
   private readonly envSchema: Record<keyof EnvConfig, EnvVarConfig> = {
     NODE_ENV: { required: true, type: "string" },
     PORT: { required: true, type: "number" },
+    DATABASE_URL: { required: true, type: "string" },
+    DATABASE_ENGINE: { required: true, type: "string" }
   };
 
   private constructor() {
@@ -26,11 +30,11 @@ export class Configuration {
     this.validateConfig();
   }
 
-  public static getInstance(): Configuration {
+  static getInstance(): Configuration {
     return Configuration.instance ??= new Configuration();
   }
 
-  public get<K extends keyof EnvConfig>(key: K): EnvConfig[K] {
+  get<K extends keyof EnvConfig>(key: K): EnvConfig[K] {
     return this.config.get(key) as EnvConfig[K];
   }
 
@@ -40,7 +44,7 @@ export class Configuration {
     for (const [key, schema] of Object.entries(this.envSchema)) {
       const envKey = key as keyof EnvConfig;
       const rawValue = process.env[envKey];
-      
+
       if (!rawValue) {
         if (schema.required) {
           missingRequired.push(envKey);
@@ -95,9 +99,9 @@ export class Configuration {
 
     for (const line of lines) {
       const trimmed = line.trim();
-      
+
       if (!trimmed || trimmed.startsWith("#")) continue;
-      
+
       const equalIndex = trimmed.indexOf("=");
       if (equalIndex === -1) continue;
 
@@ -105,7 +109,7 @@ export class Configuration {
       let value = trimmed.slice(equalIndex + 1).trim();
 
       value = value.replace(/^(["'])(.*)\1$/, "$2");
-      
+
       envVars.set(key, value);
     }
 
