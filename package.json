@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:restAPI:dev": "npx nest start restAPI --watch",
+    "prepare:dev": "docker compose up -d",
     "migrate": "NODE_OPTIONS=--no-warnings npx ts-node -r tsconfig-paths/register src/core/database/sql/migrate.ts"
   },
   "author": "",

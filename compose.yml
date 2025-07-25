@@ -4,6 +4,8 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
+      TZ: America/Bogota
+      PGTZ: America/Bogota
     networks:
       - adaptable_backend_nodejs
     ports:

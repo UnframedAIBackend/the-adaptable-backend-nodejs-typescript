@@ -4,6 +4,7 @@ import * as path from "path";
 interface EnvConfig {
   NODE_ENV: "development" | "production" | "test";
   PORT: number;
+  TZ: string;
   DATABASE_URL: string;
   DATABASE_ENGINE: string;
 }
@@ -22,7 +23,8 @@ export class Configuration {
     NODE_ENV: { required: true, type: "string" },
     PORT: { required: true, type: "number" },
     DATABASE_URL: { required: true, type: "string" },
-    DATABASE_ENGINE: { required: true, type: "string" }
+    DATABASE_ENGINE: { required: true, type: "string" },
+    TZ: { required: false, type: "string", defaultValue: "America/Bogota" }
   };
 
   private constructor() {
