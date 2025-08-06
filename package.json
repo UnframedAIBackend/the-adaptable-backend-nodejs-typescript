@@ -8,7 +8,8 @@
     "start:restAPI:dev": "npx nest start restAPI --watch",
     "prepare:dev": "docker compose up -d --wait",
     "migrate": "NODE_OPTIONS=--no-warnings npx ts-node -r tsconfig-paths/register src/core/database/sql/migrate.ts",
-    "seeder": "NODE_OPTIONS=--no-warnings npx ts-node -r tsconfig-paths/register src/core/database/sql/seeder.ts"
+    "seeder": "NODE_OPTIONS=--no-warnings npx ts-node -r tsconfig-paths/register src/core/database/sql/seeder.ts",
+    "seederNoSQL": "NODE_OPTIONS=--no-warnings npx ts-node -r tsconfig-paths/register src/core/database/nosql/seeder.ts"
   },
   "author": "",
   "license": "ISC",
