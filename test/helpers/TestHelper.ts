@@ -28,7 +28,7 @@ export class TestHelper {
     this.dbConfig.dbUrl = config.get("DATABASE_URL").replace("[DB_NAME]", this.dbConfig.dbName);
     this.dbConfig.dbEngine = TestHelper.getDBEngine();
     
-    /* implement strategy pattern to choose create NOsql & sql */
+    /* implement strategy pattern to choose create NOsql & sql move from static to object then */
     return this.dbConfig;
   }
 
