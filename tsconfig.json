@@ -30,12 +30,12 @@
     }
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "test/**/*",
   ],
   "exclude": [
     "node_modules",
     "./public",
     "dist",
-    "test"
   ]
 }
