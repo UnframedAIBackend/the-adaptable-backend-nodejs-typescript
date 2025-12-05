@@ -1,0 +1,31 @@
+# Kind cluster configuration for local Kubernetes development
+# This configuration creates a single-node cluster with port mappings
+# for local access to services
+
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+# Cluster nodes configuration
+nodes:
+  - role: control-plane
+    # Port mappings to expose services on the host
+    extraPortMappings:
+      # Map application NodePort service (30080) to host port 8080
+      # This allows accessing the application at http://localhost:8080
+      - containerPort: 30080
+        hostPort: 8080
+        protocol: TCP
+      
+      # Map standard NodePort range for additional services
+      # NodePort services use ports 30000-32767 by default in Kubernetes
+      - containerPort: 30000
+        hostPort: 30000
+        protocol: TCP
+      
+      - containerPort: 30001
+        hostPort: 30001
+        protocol: TCP
+      
+      - containerPort: 30002
+        hostPort: 30002
+        protocol: TCP

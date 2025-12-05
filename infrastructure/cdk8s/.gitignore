@@ -1,0 +1,13 @@
+# CDK8s generated files
+dist/
+
+# Dependencies
+node_modules/
+
+# Imports - keep the TypeScript definitions
+imports/*.js
+imports/*.js.map
+imports/*.d.ts
+
+# Build artifacts
+*.tsbuildinfo

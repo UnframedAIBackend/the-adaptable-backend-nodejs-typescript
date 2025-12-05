@@ -1,0 +1,22 @@
+{
+  "name": "kubernetes-deployment-cdk8s",
+  "version": "1.0.0",
+  "description": "CDK8s infrastructure definitions for Kubernetes deployment",
+  "main": "main.js",
+  "scripts": {
+    "build": "tsc",
+    "synth": "cdk8s synth",
+    "watch": "tsc -w",
+    "import": "cdk8s import"
+  },
+  "dependencies": {
+    "cdk8s": "^2.68.0",
+    "cdk8s-plus-33": "^2.0.0",
+    "constructs": "^10.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "cdk8s-cli": "^2.198.0",
+    "typescript": "^5.3.3"
+  }
+}

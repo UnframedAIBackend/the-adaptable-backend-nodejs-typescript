@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rest-api-app
+  namespace: argocd
+spec:
+  # Source configuration - where ArgoCD should look for manifests
+  source:
+    # For local development, we use a local path
+    # In production, this would be a Git repository URL
+    repoURL: https://github.com/your-org/your-repo.git
+    targetRevision: HEAD
+    path: infrastructure/cdk8s/dist/manifests
+  
+  # Destination configuration - where to deploy
+  destination:
+    # Deploy to the same cluster where ArgoCD is running
+    server: https://kubernetes.default.svc
+    namespace: default
+  
+  # Sync policy - how ArgoCD should sync
+  syncPolicy:
+    automated:
+      # Automatically sync when changes are detected
+      prune: true
+      # Automatically heal resources that drift from desired state
+      selfHeal: true
+      # Allow empty directories
+      allowEmpty: false
+    
+    # Sync options
+    syncOptions:
+      # Create namespace if it doesn't exist
+      - CreateNamespace=true
+      # Validate resources before applying
+      - Validate=true
+      # Use server-side apply
+      - ServerSideApply=true
+  
+  # Project
+  project: default

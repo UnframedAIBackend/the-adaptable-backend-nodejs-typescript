@@ -1,0 +1,11 @@
+# CDK8s configuration file
+# Defines how Kubernetes manifests are synthesized
+
+language: typescript
+app: node dist/main.js
+output: dist/manifests
+
+# Import configurations for Kubernetes resources
+imports:
+  # Import Kubernetes API resources
+  - k8s@1.28.0
